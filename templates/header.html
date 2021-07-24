@@ -10,7 +10,7 @@
             <a href="{% url 'accountapp:login' %}?next={{ request.path }}"> {# 이전의 요청 경로로 돌아오게 함  #}
                 <span>Login</span>
             </a>
-            <a href="{% url 'accountapp:login' %}">
+            <a href="{% url 'accountapp:create' %}">
                 <span>SignUp</span>
             </a>
         {% else %}
@@ -18,7 +18,7 @@
                 <span>MyPage</span>
             </a>
             <a href="{% url 'accountapp:logout' %}?next={{ request.path }}">
-                <span>logout</span>
+                <span>Logout</span>
             </a>
         {% endif %}
     </div>
