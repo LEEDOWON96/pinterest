@@ -5,10 +5,12 @@ from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView
+from django.views.generic.edit import FormMixin
 
 from articleapp.decorators import article_ownership_required
 from articleapp.forms import ArticleCreationForm
 from articleapp.models import Article
+from commentapp.forms import CommentCreationForm
 
 
 @method_decorator(login_required, 'get')
@@ -18,7 +20,7 @@ class ArticleCreateView(CreateView):
     form_class = ArticleCreationForm
     template_name = 'articleapp/create.html'
 
-    # 유저 설정 부분
+    # 유저 저장 부분
     def form_valid(self, form):
         temp_article = form.save(commit=False)
         temp_article.writer = self.request.user
@@ -26,14 +28,16 @@ class ArticleCreateView(CreateView):
 
         return super().form_valid(form)
 
-    # 아티클 등록 성공시 돌아갈 페이지 설정정
+    # 아티클 등록 성공시 돌아갈 페이지 설정
     def get_success_url(self):
         return reverse('articleapp:detail', kwargs={'pk': self.object.pk})
 
 
-class ArticleDetailView(DetailView):
+# DetailView 에는 form이 들어가 있지않아 필요 시, FormMixin을 추가하고 해당 form_class 설정
+class ArticleDetailView(DetailView, FormMixin):
     model = Article
-    context_object_name = 'target_article'  # articleapp/detail.html에서 pk 받을 이름 설정
+    form_class = CommentCreationForm  # (아티클+댓글폼) 위함
+    context_object_name = 'target_article'  # articleapp/detail.html 에서 pk 받을 이름 설정
     template_name = 'articleapp/detail.html'
 
 
