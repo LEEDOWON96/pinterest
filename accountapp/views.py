@@ -35,7 +35,7 @@ def hello_world(request):
 
 class AccountCreateView(CreateView):
     model = User
-    form_class = UserCreationForm
+    form_class = UserCreationForm  # 장고에서 제공되는 Form
     success_url = reverse_lazy('accountapp:hello_world')  # reverse는 함수에서 바로 사용, reverse_lazy는 클래스형에서 사용
     template_name = 'accountapp/create.html'
 
@@ -46,7 +46,7 @@ class AccountDetailView(DetailView):
     template_name = 'accountapp/detail.html'
 
 
-@method_decorator(has_ownership, 'get')  # 일반 함수에서 사용하는 데코레이터를 메소드에서 사용
+@method_decorator(has_ownership, 'get')  # 일반 함수에서만 사용하는 데코레이터를 메소드에서 사용
 @method_decorator(has_ownership, 'post')
 class AccountUpdateView(UpdateView):
     model = User
