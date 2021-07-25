@@ -22,9 +22,9 @@ class ProfileCreateView(CreateView):
         temp_profile.user = self.request.user  # user 데이터 저장
         temp_profile.save()
 
-        return super().form_valid(form)  # 수정이후 똑같은 함수 봔환
+        return super().form_valid(form)  # 수정 이후(user 데이터 추가 저장) 똑같은 함수 봔환
 
-    def get_success_url(self):
+    def get_success_url(self):  # success_url='accountapp:detail' 로 지정시 pk 인자를 못 보내므로 내부 메소드 오버로딩
         return reverse('accountapp:detail', kwargs={'pk': self.object.user.pk})
 
 
@@ -36,5 +36,5 @@ class ProfileUpdateView(UpdateView):
     form_class = ProfileCreationForm  # 장고에서 제공되지 않아 따로 forms.py 생성
     template_name = 'profileapp/update.html'
 
-    def get_success_url(self):
+    def get_success_url(self):  # success_url='accountapp:detail' 로 지정시 pk 인자를 못 보내므로 내부 메소드 오버로딩
         return reverse('accountapp:detail', kwargs={'pk': self.object.user.pk})

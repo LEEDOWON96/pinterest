@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <style>
+        .container div {
+            width: 250px;
+            background-color: antiquewhite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 1rem;
+        }
+
+        .container img {
+            width: 100%;
+            border-radius: 1rem;
+        }
+
+    </style> {# https://picsum.photos/200/300 임의로 사진 띄워주는 사이트 #}
+    <div class="container">
+        <div class="item1">
+            <img src="https://picsum.photos/200/300" alt="">
+        </div>
+        <div>
+            <img src="https://picsum.photos/200/100" alt="">
+        </div>
+        <div>
+            <img src="https://picsum.photos/200/260" alt="">
+        </div>
+        <div>
+            <img src="https://picsum.photos/200/200" alt="">
+        </div>
+        <div>
+            <img src="https://picsum.photos/200/170" alt="">
+        </div>
+        <div>
+            <img src="https://picsum.photos/200/350" alt="">
+        </div>
+        <div>
+            <img src="https://picsum.photos/200/300" alt="">
+        </div>
+        <div>
+            <img src="https://picsum.photos/200/230" alt="">
+        </div>
+        <div>
+            <img src="https://picsum.photos/200/420" alt="">
+        </div>
+        <div>
+            <img src="https://picsum.photos/200/150" alt="">
+        </div>
+
+    </div>
+
+    <script src="{% static 'js/magicgrid.js' %}"></script>
+
+{% endblock %}
