@@ -51,7 +51,7 @@ class AccountDetailView(DetailView):
 class AccountUpdateView(UpdateView):
     model = User
     context_object_name = 'target_user'
-    form_class = AccountUpdateForm
+    form_class = AccountUpdateForm  # forms.py에서 수정
     success_url = reverse_lazy('accountapp:hello_world')
     template_name = 'accountapp/update.html'
 
