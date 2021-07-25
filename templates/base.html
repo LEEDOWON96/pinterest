@@ -4,17 +4,13 @@
 {% include 'head.html' %}
 
 <body style="font-family: 'NanumBarunpenR'">
-
     {% include 'header.html' %}
-
-    <hr>
-
-    {% block content %}
-    {% endblock %}
-
-    <hr>
-
+    <div style="background-color: #F6F6F6">
+        <hr>
+            {% block content %}
+            {% endblock %}
+        <hr>
+    </div>
     {% include 'footer.html' %}
-
 </body>
 </html>
