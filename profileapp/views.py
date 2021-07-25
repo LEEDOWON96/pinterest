@@ -1,3 +1,25 @@
 from django.shortcuts import render
 
 # Create your views here.
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
+
+from profileapp.forms import ProfileCreationForm
+from profileapp.models import Profile
+
+
+class ProfileCreateView(CreateView):
+    model = Profile
+    context_object_name = 'target_profile'
+    form_class = ProfileCreationForm  # 장고에서 제공되지 않아 따로 forms.py 생성
+    success_url = reverse_lazy('accountapp:hello_world')
+    template_name = 'profileapp/create.html'
+
+    # forms.py 에서 빠진 user 데이터를 저장하기 위해 추가 작성
+    def form_valid(self, form):
+        temp_profile = form.save(commit=False)  # 임시 데이터 저장(fields = ['image', 'nickname', 'message'])
+        temp_profile.user = self.request.user  # user 데이터 저장
+        temp_profile.save()
+
+        return super().form_valid(form)  # 수정이후 똑같은 함수 봔환
+
