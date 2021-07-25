@@ -18,44 +18,27 @@
         }
     </style> {# https://picsum.photos/200/300 임의로 사진 띄워주는 사이트 #}
 
-    <div class="container">
-        <div class="item1">
-            <img src="https://picsum.photos/200/300" alt="">
+    {% if article_list %}
+        <div class="container">
+            {% for article in article_list %}
+                <a href="{% url 'articleapp:detail' pk=article.pk %}">
+                    {% include 'snippets/card.html' with article=article %} {# card.html에서 쓰일 article과 동일 #}
+                </a>
+            {% endfor %}
         </div>
-        <div>
-            <img src="https://picsum.photos/200/100" alt="">
+        <script src="{% static 'js/magicgrid.js' %}"></script>
+    {% else %}
+        <div class="text-center">
+            <h1>No Articles yet!</h1>
         </div>
-        <div>
-            <img src="https://picsum.photos/200/260" alt="">
-        </div>
-        <div>
-            <img src="https://picsum.photos/200/200" alt="">
-        </div>
-        <div>
-            <img src="https://picsum.photos/200/170" alt="">
-        </div>
-        <div>
-            <img src="https://picsum.photos/200/350" alt="">
-        </div>
-        <div>
-            <img src="https://picsum.photos/200/300" alt="">
-        </div>
-        <div>
-            <img src="https://picsum.photos/200/230" alt="">
-        </div>
-        <div>
-            <img src="https://picsum.photos/200/420" alt="">
-        </div>
-        <div>
-            <img src="https://picsum.photos/200/150" alt="">
-        </div>
+    {% endif %}
+    {% include 'snippets/pagination.html' with page_obj=page_obj %}
+
     </div>
     <div style="text-align: center">
         <a href="{% url 'articleapp:create' %}" class="btn btn-dark rounded-pill col-3 mt-3 mb-3 ">
             Create Article
         </a>
     </div>
-
-    <script src="{% static 'js/magicgrid.js' %}"></script>
 
 {% endblock %}
