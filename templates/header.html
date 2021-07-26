@@ -9,8 +9,11 @@
         <a href="{% url 'projectapp:list' %}" class="pinterest_header_nav">
             <span>Projects</span>
         </a>
+        <a href="{% url 'subscriberapp:list' %}" class="pinterest_header_nav">
+            <span>Subscriptions</span>
+        </a>
         {% if not user.is_authenticated %}
-            <a href="{% url 'accountapp:login' %}?next={{ request.path }}" class="pinterest_header_nav"> {# 이전의 요청 경로로 돌아오게 함  #}
+            <a href="{% url 'accountapp:login' %}?next={{ request.path }}" class="pinterest_header_nav">
                 <span>Login</span>
             </a>
             <a href="{% url 'accountapp:create' %}" class="pinterest_header_nav">
