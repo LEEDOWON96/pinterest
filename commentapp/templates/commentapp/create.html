@@ -10,7 +10,7 @@
             {% bootstrap_form form %}
 
             {% if user.is_authenticated %}
-                <input type="submit" class="btn btn-dark rounded-pill col-6 mt-3">
+                <input type="submit" value="확인" class="btn btn-dark rounded-pill col-6 mt-3">
             {% else %}
                 <a href="{% url 'accountapp:login' %}?next={{ request.path }}"
                    class="btn btn-dark rounded-pill col-6 mt-3">

@@ -12,27 +12,9 @@ from django.views.generic.list import MultipleObjectMixin
 
 from accountapp.decorators import account_ownership_required
 from accountapp.forms import AccountUpdateForm
-from accountapp.models import HelloWorld
 from articleapp.models import Article
 
 has_ownership = [account_ownership_required, login_required]
-
-
-@login_required  # CF_클래스 안에 함수는 적용 안됨
-def hello_world(request):
-    if request.method == "POST":
-
-        temp = request.POST.get('hello_world_input')
-
-        new_hello_world = HelloWorld()
-        new_hello_world.text = temp
-        new_hello_world.save()
-
-        return HttpResponseRedirect(reverse('accountapp:hello_world'))
-
-    else:
-        hello_world_list = HelloWorld.objects.all()
-        return render(request, 'accountapp/hello_world.html', context={'hello_world_list': hello_world_list})
 
 
 class AccountCreateView(CreateView):
@@ -54,7 +36,7 @@ class AccountDetailView(DetailView, MultipleObjectMixin):
         return super(AccountDetailView, self).get_context_data(object_list=object_list, **kwargs)
 
 
-@method_decorator(has_ownership, 'get')  # 일반 함수에서만 사용하는 데코레이터를 메소드에서 사용
+@method_decorator(has_ownership, 'get')  # 일반 함수에서만 사용 데코레이터(ex_@login_required)를 메소드에서 사용
 @method_decorator(has_ownership, 'post')
 class AccountUpdateView(UpdateView):
     model = User

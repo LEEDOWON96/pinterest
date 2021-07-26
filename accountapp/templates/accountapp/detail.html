@@ -8,13 +8,17 @@
             {% if target_user.profile %}
                 <img src="{{ target_user.profile.image.url }}" alt=""
                      style="height: 8rem; width: 8rem; border-radius:20rem; margin-bottom: 1rem; object-fit: cover;">
+
                 <h2 style="font-family: 'NanumBarunpenB'">
                     {{ target_user.profile.nickname }}
+
                     {% if target_user == user %}
-                        <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
+                        <a class="material-icons" style="box-shadow: 0 0 4px darkgray; border-radius: 10rem; padding: .4rem;"
+                           href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
                             edit
                         </a>
                     {% endif %}
+
                 </h2>
                 <h5 style="margin-bottom: 3rem">
                     {{ target_user.profile.message }}
@@ -34,15 +38,18 @@
             {% endif %}
 
             {% if target_user == user %}
-                <a href="{% url 'accountapp:update' pk=user.pk %}">
-                    <p>
-                        회원 정보 수정
-                    </p>
+                <a class="material-icons" style="box-shadow: 0 0 4px cornflowerblue; border-radius: 10rem; padding: .4rem;"
+                   href="{% url 'accountapp:update' pk=user.pk %}">
+                    <span>
+                        settings
+                    </span>
                 </a>
-                <a href="{% url 'accountapp:delete' pk=user.pk %}">
-                    <p>
-                        회원 탈퇴
-                    </p>
+                &nbsp;
+                <a class="material-icons" style="box-shadow: 0 0 4px indianred; border-radius: 10rem; padding: .4rem;"
+                   href="{% url 'accountapp:delete' pk=user.pk %}">
+                    <span>
+                        cancel
+                    </span>
                 </a>
             {% endif %}
 
