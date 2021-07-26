@@ -1,24 +1,41 @@
-.pinterest_logo{
+.pinterest_logo {
     text-align: center;
     margin: 2rem 0;
 }
 
-.pinterest_header_logo{
+.pinterest_header_logo {
     font-family: 'Monoton', cursive;
+    font-width: bolder;
 }
 
-.pinterest_footer_logo{
+.pinterest_footer_logo {
     font-family: 'Just Another Hand', cursive;
 }
 
-.pinterest_footer_button{
+.pinterest_footer_button {
     font-size: .9rem; /*1rem=16px*/
 }
 
-@media screen and (max-width: 500px){
-    html{
+@media screen and (max-width: 500px) {
+    html {
         font-size: 13px;
     }
 }
 
+a {
+    color: dimgrey;
+    text-decoration: none;
+}
 
+a:hover {
+    color: black;
+}
+
+.pinterest_header_nav{
+    margin: auto 0.5rem;
+    font-size: large;
+}
+
+.pinterest_header_navbar{
+    margin: 1rem 0;
+}

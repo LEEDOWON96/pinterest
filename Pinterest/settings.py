@@ -42,6 +42,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# 모든 ip 허용
 ALLOWED_HOSTS = ['*']
 
 
@@ -59,6 +60,7 @@ INSTALLED_APPS = [
     'profileapp',
     'articleapp',
     'commentapp',
+    'projectapp',
 ]
 
 MIDDLEWARE = [
