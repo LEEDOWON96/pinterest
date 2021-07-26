@@ -68,4 +68,7 @@ class ArticleListView(ListView):
     template_name = 'articleapp/list.html'
     paginate_by = 10  # 페이지 당 아티클 최대 개수 지정
 
-
+    # 페이지 최신 정렬
+    def get_queryset(self):
+        article_list = Article.objects.order_by('-id')
+        return article_list
