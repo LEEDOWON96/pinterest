@@ -4,7 +4,9 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, ListView
+from django.views.generic.list import MultipleObjectMixin
 
+from articleapp.models import Article
 from projectapp.forms import ProjectCreationForm
 from projectapp.models import Project
 
@@ -22,10 +24,17 @@ class ProjectCreateView(CreateView):
         return reverse('projectapp:detail', kwargs={'pk': self.object.pk})
 
 
-class ProjectDetailView(DetailView):
+class ProjectDetailView(DetailView, MultipleObjectMixin):
     model = Project
     context_object_name = 'target_project'  # projectapp/detail.html 에서 pk 받을 이름 설정
     template_name = 'projectapp/detail.html'
+    paginate_by = 25
+
+    # 해당 프로젝트안의 아티클 필터링
+    def get_context_data(self, **kwargs):
+        object_list = Article.objects.filter(project=self.get_object())
+
+        return super(ProjectDetailView, self).get_context_data(object_list=object_list, **kwargs)
 
 
 # urls.py 에서 list 출력위해 TemplateView 대신 사용할 ListView 생성
