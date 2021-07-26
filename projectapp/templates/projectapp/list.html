@@ -24,7 +24,7 @@
 
     {% if project_list %}
         <div class="container">
-            {% for project in project_list %}
+            {% for project in project_list reversed %}
                 <a href="{% url 'projectapp:detail' pk=project.pk %}">
                     {% include 'snippets/card_project.html' with project=project %} {# card.html에서 쓰일 article과 동일 #}
                 </a>

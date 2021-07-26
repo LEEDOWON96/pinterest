@@ -27,7 +27,7 @@
 
 {% if article_list %}
     <div class="container">
-        {% for article in article_list %}
+        {% for article in article_list reversed %}
             <a href="{% url 'articleapp:detail' pk=article.pk %}">
                 {% include 'snippets/card.html' with article=article %} {# card.html에서 쓰일 article과 동일 #}
             </a>
