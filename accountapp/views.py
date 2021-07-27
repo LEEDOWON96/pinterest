@@ -20,7 +20,7 @@ has_ownership = [account_ownership_required, login_required]
 class AccountCreateView(CreateView):
     model = User
     form_class = UserCreationForm  # 장고에서 제공되는 Form
-    success_url = reverse_lazy('accountapp:hello_world')  # reverse는 함수에서 바로 사용, reverse_lazy는 클래스형에서 사용
+    success_url = reverse_lazy('accountapp:login')  # reverse는 함수에서 바로 사용, reverse_lazy는 클래스형에서 사용
     template_name = 'accountapp/create.html'
 
 
