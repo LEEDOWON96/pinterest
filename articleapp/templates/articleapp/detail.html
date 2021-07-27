@@ -10,21 +10,24 @@
             <hr>
             <img style="width: 100%; border-radius: 1rem; margin: 2rem 0;"
                  src="{{ target_article.image.url }}" alt="">
-            <div class="text-left">
+            <div class="text-left" style="margin-bottom: 2rem">
                 😀 {{ target_article.content | safe }} {# safe로 태그노출 방지 #}
             </div>
 
             {% if target_article.writer == user %}
-                <a href="{% url 'articleapp:update' pk=target_article.pk %}" class="btn btn-primary rounded-pill col-3">
+                <a href="{% url 'articleapp:update' pk=target_article.pk %}"
+                   class="btn btn-success rounded-pill col-3">
                     Update Article
                 </a>
-                <a href="{% url 'articleapp:delete' pk=target_article.pk %}" class="btn btn-primary rounded-pill col-3">
+                &nbsp;
+                <a href="{% url 'articleapp:delete' pk=target_article.pk %}"
+                   class="btn btn-danger rounded-pill col-3">
                     Delete Article
                 </a>
             {% endif %}
             <hr>
             {% for comment in target_article.comment.all %}
-                {% include 'commentapp/detail.html' with comment=comment%}
+                {% include 'commentapp/detail.html' with comment=comment %}
             {% endfor %}
             {% include 'commentapp/create.html' with article=target_article %}
         </div>
